@@ -1,10 +1,10 @@
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import models.Cart;
 import models.Item;
 import models.Store;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Main {
     static Store store = new Store();
@@ -29,7 +29,7 @@ public class Main {
         while (value) {
             System.out.println("choose to \n\ta) add or \n\tb) remove \n\tc) checkout.");
             switch (scan.nextLine()) {
-                case "a":
+                case "a" -> {
                     System.out.print("\nChoose an aisle number between: 1 – 7: ");
                     int row = scan.nextInt() - 1;
                     scan.nextLine();
@@ -37,19 +37,17 @@ public class Main {
                     int column = scan.nextInt() - 1;
                     scan.nextLine();
                     Item item = store.getItems(row, column);
-                    if(cart.add(item)) {
+                    if (cart.add(item)) {
                         System.out.println("\n" + item.getName() + " is already in your shopping cart.");
                     } else {
-                        System.out.println("\n" + item.getName() + " was added to your shopping cart."); 
+                        System.out.println("\n" + item.getName() + " was added to your shopping cart.");
                     }
-                    break;
-                case "b":
+                }
+                case "b" -> {
                     System.out.print("Enter the item you'd like to remove: ");
                     cart.remove(scan.nextLine());
-                    break;
-                case "c":
-                    cart.checkout();
-                    break;
+                }
+                case "c" -> cart.checkout();
             }
             System.out.println("\n\nSHOPPING CART\n\n" + cart);
             System.out.print("Enter anything to continue: ");
